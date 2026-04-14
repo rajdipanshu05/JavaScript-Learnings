@@ -109,3 +109,51 @@ console.log(s1 === s2); // false (always unique)
 // typeof null → object (bug)
 // + → string concat, others → number
 // JS → dynamically typed
+
+
+
+// ===============================
+// 🔥 STACK vs HEAP MEMORY
+// ===============================
+
+
+// 🔹 STACK (Primitive Data Types)
+
+// Stores: number, string, boolean, null, undefined, bigint, symbol
+// 👉 Works on COPY BY VALUE
+
+let x = 10;
+let y = x;
+
+y = 20;
+
+console.log(x); // 10
+console.log(y); // 20
+
+// Explanation:
+// - x = 10 stored in stack
+// - y gets COPY of x
+// - changing x does NOT affect x
+
+
+// --------------------------------------
+
+
+// 🔹 HEAP (Non-Primitive Data Types)
+
+// Stores: object, array, function
+// 👉 Works on REFERENCE (address)
+
+let obj1 = { value: 10 };
+let obj2 = obj1;
+
+obj2.value = 20;
+
+console.log(obj1.value); // 20
+console.log(obj2.value); // 20
+
+// Explanation:
+// - object stored in heap
+// - obj1 stores reference (address)
+// - obj2 gets SAME reference
+// - change reflects everywhere
