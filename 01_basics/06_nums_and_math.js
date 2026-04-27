@@ -57,7 +57,7 @@ console.log(isNaN("abc")); // true
 
 // Precision issue ⚠️
 console.log(0.1 + 0.2); // 0.30000000000000004
-//
+//Because floating-point numbers are stored in binary, some decimal values like 0.1 cannot be represented exactly, causing precision errors.”
 
 
 // *********************************
