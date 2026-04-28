@@ -133,7 +133,7 @@ console.log("5" - 2)  // 3 (number conversion)
 // Some weird JS behaviors due to coercion
 
 console.log([] == false)   // true 😵
-console.log([] === false)  // false
+// console.log([] === false)  // false
 
 console.log(null == undefined)   // true
 console.log(null === undefined)  // false
