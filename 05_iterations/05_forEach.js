@@ -64,9 +64,9 @@ console.log(nums); // [2,4,6]
 // 🔹 6. CANNOT BREAK ⚠️
 // --------------------------------------
 
-arr.forEach((val) => {
-  if (val === 20) break; // ❌ error
-});
+// arr.forEach((val) => {
+//   if (val === 20) break; // ❌ error
+// });
 
 // 👉 break/continue not allowed
 
