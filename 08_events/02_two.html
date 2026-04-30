@@ -1,0 +1,154 @@
+```html id="settimeout-notes"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>setTimeout Notes</title>
+</head>
+
+<body>
+    <h1>Chai aur code</h1>
+    <button id="stop">Stop</button>
+</body>
+
+<script>
+
+// ===============================
+// 🔥 setTimeout (COMPLETE NOTES)
+// ===============================
+
+
+// --------------------------------------
+// 🔹 1. BASIC FUNCTION
+// --------------------------------------
+
+// simple function
+const sayHitesh = function(){
+    console.log("Hitesh");
+}
+
+// setTimeout example
+// setTimeout(sayHitesh, 2000);
+
+// 👉 after 2 seconds → function runs
+// 👉 runs ONLY ONCE (important)
+
+
+// --------------------------------------
+// 🔹 2. CHANGE TEXT AFTER DELAY
+// --------------------------------------
+
+const changeText = function(){
+    document.querySelector('h1').innerHTML = "best JS series"
+}
+
+// schedule task
+const changeMe = setTimeout(changeText, 2000);
+
+// 👉 after 2 sec → text changes
+
+
+// --------------------------------------
+// 🔹 3. clearTimeout (IMPORTANT ⭐)
+// --------------------------------------
+
+document.querySelector('#stop').addEventListener('click', function(){
+    
+    clearTimeout(changeMe);
+
+    console.log("STOPPED");
+
+})
+
+// 👉 stops scheduled setTimeout
+// 👉 must pass reference (changeMe)
+
+
+// --------------------------------------
+// 🔹 4. HOW setTimeout WORKS (VERY IMPORTANT)
+// --------------------------------------
+
+// Step-by-step:
+
+// 1. setTimeout → goes to Web API (browser)
+// 2. timer starts (2 sec)
+// 3. after time → callback goes to queue
+// 4. event loop checks stack
+// 5. executes function
+
+// 👉 JS is single-threaded
+// 👉 async handled via event loop
+
+
+// --------------------------------------
+// 🔹 5. SYNTAX
+// --------------------------------------
+
+// setTimeout(function, delay, arg1, arg2...)
+
+
+// --------------------------------------
+// 🔹 6. PASS ARGUMENTS
+// --------------------------------------
+
+setTimeout(function(name){
+    console.log("Hello " + name);
+}, 1000, "Hitesh");
+
+// Output after 1 sec:
+// Hello Hitesh
+
+
+// --------------------------------------
+// 🔹 7. COMMON MISTAKE ⚠️
+// --------------------------------------
+
+// ❌ WRONG
+// setTimeout(changeText(), 2000)
+
+// 👉 this runs immediately
+
+// ✅ CORRECT
+// setTimeout(changeText, 2000)
+
+
+// --------------------------------------
+// 🔹 8. DIFFERENCE: setTimeout vs setInterval
+// --------------------------------------
+
+// setTimeout → runs once
+// setInterval → runs repeatedly
+
+
+// --------------------------------------
+// 🔹 9. REAL USE CASES
+// --------------------------------------
+
+// 👉 delay UI update
+// 👉 API retry logic
+// 👉 animations
+// 👉 debounce/throttle
+
+
+// --------------------------------------
+// 🔹 10. IMPORTANT NOTES
+// --------------------------------------
+
+// ✔ setTimeout is async
+// ✔ delay is minimum time (not exact)
+// ✔ callback waits for call stack
+
+
+// ===============================
+// ⚡ FINAL TAKEAWAY
+// ===============================
+
+// setTimeout → run function after delay
+// clearTimeout → cancel it
+// async → handled by event loop
+// always pass function reference (not call)
+
+</script>
+
+</html>

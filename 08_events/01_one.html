@@ -1,0 +1,226 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Events Complete Notes</title>
+</head>
+
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing Images</h2>
+
+    <div>
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg" /></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg" /></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg" /></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg" /></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg" /></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+    </div>
+
+</body>
+
+<script>
+
+// ===============================
+// 🔥 JAVASCRIPT EVENTS (COMPLETE)
+// ===============================
+
+
+// --------------------------------------
+// 🔹 1. INLINE EVENT (NOT RECOMMENDED)
+// --------------------------------------
+
+// document.getElementById('owl').onclick = function(){
+//     alert("owl clicked")
+// }
+
+// 👉 old way
+// 👉 overrides existing event
+// 👉 not flexible
+
+
+// --------------------------------------
+// 🔹 2. addEventListener (BEST PRACTICE)
+// --------------------------------------
+
+// syntax:
+// element.addEventListener(type, callback, useCapture)
+
+// type → event name (click, mouseover etc)
+// callback → function
+// useCapture → true/false
+
+
+// --------------------------------------
+// 🔹 3. EVENT OBJECT (VERY IMPORTANT ⭐)
+// --------------------------------------
+
+// e (event object) contains info like:
+
+// e.type → event type
+// e.target → where event happened
+// e.currentTarget → where listener attached
+// e.clientX / clientY → mouse position
+// e.altKey / ctrlKey → keyboard keys
+
+// console.log(e);
+
+
+// --------------------------------------
+// 🔹 4. EVENT PROPAGATION
+// --------------------------------------
+
+// Two types:
+// 1. Bubbling (default)
+// 2. Capturing
+
+// Bubbling: child → parent
+// Capturing: parent → child
+
+
+// --------------------------------------
+// 🔹 5. BUBBLING EXAMPLE
+// --------------------------------------
+
+// document.getElementById('images').addEventListener('click', function(e){
+//     console.log("UL clicked");
+// }, false)
+
+// document.getElementById('owl').addEventListener('click', function(e){
+//     console.log("Owl clicked");
+// }, false)
+
+// 👉 Click owl →
+// Output:
+// Owl clicked
+// UL clicked
+
+// 👉 because bubbling (bottom → top)
+
+
+// --------------------------------------
+// 🔹 6. STOP PROPAGATION
+// --------------------------------------
+
+// document.getElementById('owl').addEventListener('click', function(e){
+//     console.log("Owl clicked");
+//     e.stopPropagation();
+// }, false)
+
+// 👉 stops event from going to parent
+
+
+// --------------------------------------
+// 🔹 7. PREVENT DEFAULT
+// --------------------------------------
+
+// document.getElementById('google').addEventListener('click', function(e){
+//     e.preventDefault();
+//     console.log("Google clicked but not opened");
+// });
+
+// 👉 stops default behavior (like link open)
+
+
+// --------------------------------------
+// 🔥 8. EVENT DELEGATION (IMPORTANT ⭐)
+// --------------------------------------
+
+// 👉 Instead of adding event to each image,
+// 👉 we add ONE event to parent (ul)
+
+// 👉 more efficient & dynamic
+
+
+document.querySelector('#images').addEventListener('click', function(e){
+
+    console.log(e.target.tagName);
+    // 👉 tells which element was clicked
+
+    // only work for images
+    if (e.target.tagName === 'IMG') {
+
+        console.log(e.target.id);
+        // 👉 which image clicked
+
+        let removeIt = e.target.parentNode;
+        // 👉 parent <li> select
+
+        removeIt.remove();
+        // 👉 remove element
+
+        // alternative:
+        // removeIt.parentNode.removeChild(removeIt)
+
+    }
+
+});
+
+
+// --------------------------------------
+// 🔥 WHY EVENT DELEGATION?
+// --------------------------------------
+
+// ❌ bad approach:
+// addEventListener on every image
+
+// ✅ good approach:
+// one listener on parent
+
+// benefits:
+// ✔ better performance
+// ✔ works for dynamic elements
+// ✔ less code
+
+
+// --------------------------------------
+// 🔹 9. IMPORTANT PROPERTIES
+// --------------------------------------
+
+// e.target → actual clicked element
+// e.currentTarget → where event attached
+
+// Example:
+// click on image →
+// target = img
+// currentTarget = ul
+
+
+// --------------------------------------
+// 🔹 10. CAPTURING MODE (ADVANCED)
+// --------------------------------------
+
+// addEventListener("click", fn, true)
+
+// 👉 parent runs first
+// 👉 rarely used
+
+
+// ===============================
+// ⚡ FINAL TAKEAWAY
+// ===============================
+
+// Events = user interaction (click, hover, etc)
+
+// MOST IMPORTANT:
+// ✔ addEventListener
+// ✔ event bubbling
+// ✔ stopPropagation
+// ✔ preventDefault
+// ✔ event delegation ⭐
+
+// 👉 Interview Gold:
+// "Use event delegation for performance and dynamic elements"
+
+</script>
+
+</html>
+
+// type, timestamp, defaultPrevented
+    // target, toElement, srcElement, currentTarget,
+    // clientX, clientY, screenX, screenY
+    // altkey, ctrlkey, shiftkey, keyCode
