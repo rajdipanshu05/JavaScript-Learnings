@@ -1,0 +1,178 @@
+```html id="xhr-notes"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XMLHttpRequest Notes</title>
+</head>
+
+<body style="background-color: #212121; color: white;">
+    
+    <!-- ===============================
+         🔥 READY STATE EXPLANATION
+    =============================== -->
+
+    <!--
+    0 → UNSENT → request not initialized
+    1 → OPENED → open() called
+    2 → HEADERS_RECEIVED → response headers available
+    3 → LOADING → data coming (partial)
+    4 → DONE → request complete
+    -->
+
+</body>
+
+<script>
+
+// ===============================
+// 🔥 XMLHttpRequest (XHR NOTES)
+// ===============================
+
+
+// --------------------------------------
+// 🔹 1. CREATE REQUEST
+// --------------------------------------
+
+const requestUrl = 'https://api.github.com/users/hiteshchoudhary'
+
+// create object
+const xhr = new XMLHttpRequest();
+
+
+// --------------------------------------
+// 🔹 2. OPEN REQUEST
+// --------------------------------------
+
+xhr.open('GET', requestUrl);
+
+// 👉 method → GET
+// 👉 URL → API endpoint
+// 👉 this does NOT send request yet
+
+
+// --------------------------------------
+// 🔹 3. TRACK STATE CHANGE ⭐
+// --------------------------------------
+
+xhr.onreadystatechange = function(){
+
+    console.log(xhr.readyState);
+
+    // 👉 runs every time state changes
+
+    if (xhr.readyState === 4) {
+
+        // --------------------------------------
+        // 🔹 4. RESPONSE HANDLING
+        // --------------------------------------
+
+        const data = JSON.parse(this.responseText);
+
+        console.log(typeof data); // object
+
+        console.log(data.followers); 
+        // 👉 prints followers count
+
+    }
+}
+
+
+// --------------------------------------
+// 🔹 5. SEND REQUEST
+// --------------------------------------
+
+xhr.send();
+
+// 👉 actual request sent to server
+
+
+// --------------------------------------
+// 🔥 HOW IT WORKS (VERY IMPORTANT)
+// --------------------------------------
+
+// 1. xhr created
+// 2. open() called
+// 3. send() → request goes to server
+// 4. response comes back
+// 5. readyState changes (0 → 4)
+// 6. when 4 → data available
+
+
+// --------------------------------------
+// 🔹 6. RESPONSE TYPE ⚠️
+// --------------------------------------
+
+// responseText → always string
+
+// 👉 so we use:
+JSON.parse()
+
+// to convert into object
+
+
+// --------------------------------------
+// 🔹 7. IMPORTANT EVENT ⭐
+// --------------------------------------
+
+// onreadystatechange → fires multiple times
+
+// alternative (better):
+// xhr.onload = function() {}
+
+// 👉 runs only once when complete
+
+
+// --------------------------------------
+// 🔹 8. ERROR HANDLING ⚠️
+// --------------------------------------
+
+// xhr.onerror = function() {
+//     console.log("Request failed");
+// }
+
+
+// --------------------------------------
+// 🔹 9. STATUS CHECK (IMPORTANT)
+// --------------------------------------
+
+// if (xhr.readyState === 4 && xhr.status === 200)
+
+// 👉 ensures success response
+
+
+// --------------------------------------
+// 🔹 10. MODERN ALTERNATIVE
+// --------------------------------------
+
+// fetch API is now preferred:
+
+// fetch(url)
+//   .then(res => res.json())
+//   .then(data => console.log(data))
+
+
+// --------------------------------------
+// 🔹 11. INTERVIEW POINTS
+// --------------------------------------
+
+// ✔ XHR is old way of making HTTP requests
+// ✔ works asynchronously
+// ✔ readyState tells request status
+// ✔ responseText is string
+// ✔ JSON.parse converts to object
+
+
+// ===============================
+// ⚡ FINAL TAKEAWAY
+// ===============================
+
+// XMLHttpRequest → old API request method
+// readyState → track progress
+// send() → starts request
+// JSON.parse → convert response
+
+</script>
+
+</html>
+```
